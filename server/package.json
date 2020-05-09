@@ -1,0 +1,24 @@
+{
+  "name": "test-work",
+  "version": "1.0.0",
+  "description": "test-work for RocketSales",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "js"
+  ],
+  "author": "childrenofbodom737@gmail",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2",
+    "utf8": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+    crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/dbc2fc1ff4.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Client List</title>
+</head>
+<body>
+    
+    <div id="header" v-cloak>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="col-lg-3">
+                    <h1><a class="navbar-brand logo" 
+                        href="#"
+                        @click.prevent="getAllContacts"
+                        >Список контактов</a></h1>
+                </div>
+            
+                <div class="collapse navbar-collapse ml-auto col-lg-4 d-flex justify-content-center">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск контактов" 
+                        aria-label="Search" v-model="userQuery">
+                        <button class="btn my-2 my-sm-0" 
+                            :class="[isValidQuery ? 'btn-outline-success' : 'btn-outline-secondary']"
+                            type="submit"
+                            @click.prevent="sendQuery"
+                        >Искать</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div id="table" v-cloak>
+        <section>
+            <div class="container-fluid">
+                <div class="contacts-table">
+                    <div class="contacts-table__header">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-3">Полное имя</div>
+                            <div class="col-lg-3">Должность</div>
+                            <div class="col-lg-3">Телефон</div>
+                            <div class="col-lg-2">Email</div>
+                        </div>
+                    </div>
+                    
+                    <div v-if="loading" 
+                        style="margin-top:50px; padding-bottom:50px;"
+                        class="d-flex justify-content-center aling-items-center">
+                        <loader></loader>
+                    </div>
+
+                    <div v-else>
+                        <div v-if="!issetContacts" class="not-contacts">
+                            <h1>Контакты не найдены...</h1>
+                        </div>
+    
+                        <div v-else class="contacts-table__body"> 
+                            <contact v-for="contact in contacts"
+                                :key="contact.id"
+                                :contact="contact"
+                            ></contact>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

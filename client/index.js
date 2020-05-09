@@ -102,10 +102,10 @@ Vue.component('contact', {
                         <i class="fas fa-plus" :class="[hiddenAddedData ? '' : 'rotate_135deg']"></i>
                     </div>
                 </div>
-                <div class="col-lg-3">{{ contact.name || 'Не указано'}}</div>
-                <div class="col-lg-3">{{ this.contactData().POSITION || 'Не указана' }}</div>
-                <div class="col-lg-3">{{ this.contactData().PHONE || 'Не указан'}}</div>
-                <div class="col-lg-2">{{ this.contactData().EMAIL || 'Не указан'}}</div>
+                <div class="col-lg-3 col-xl-3 col-md-3">{{ contact.name || 'Не указано'}}</div>
+                <div class="col-lg-3 col-xl-3 col-md-3">{{ this.contactData().POSITION || 'Не указана' }}</div>
+                <div class="col-lg-3 col-xl-3 col-md-3">{{ this.contactData().PHONE || 'Не указан'}}</div>
+                <div class="col-lg-2 col-xl-2 col-md-2">{{ this.contactData().EMAIL || 'Не указан'}}</div>
             </div>
         </div>
         <div v-show="!hiddenAddedData">
@@ -126,17 +126,22 @@ Vue.component('lead', {
             return text.substr(start, end)
         }
     },
+    computed: {
+        getPrice() {
+            return this.lead.sale ? this.lead.sale + ' ₽' : 'Не указан'
+        }
+    },
     template: `
     <div class="leads-contact-info">
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-1 lead-info-item lead-name"><span>{{lead.name}}</span></div>
-            <div class="col-lg-2 lead-info-item" style="margin-right:7px;"><span>Воронка:</span>
+            <div class="col-lg-1 col-xl-1 col-md-1"></div>
+            <div class="col-lg-1 col-xl-1 col-md-1 lead-info-item lead-name"><span>{{lead.name}}</span></div>
+            <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item" style="margin-right:7px;"><span>Воронка:</span>
                 {{lead.pipelines.name}}
             </div>
-            <div class="col-lg-2 lead-info-item"><span>Компания:</span> {{(Object.keys(lead.company).length > 0) 
+            <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item"><span>Компания:</span> {{(Object.keys(lead.company).length > 0) 
             ? lead.company.name : 'Отсутствует'}}</div>
-            <div class="col-lg-2 lead-info-item"><span>Бюджет:</span> {{lead.sale || 'Не указан'}}</div>
+            <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item"><span>Бюджет:</span> {{ getPrice }}</div>
         </div>
     </div>
     `

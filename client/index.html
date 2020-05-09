@@ -13,27 +13,31 @@
 <body>
     
     <div id="header" v-cloak>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="col-lg-3">
-                    <h1><a class="navbar-brand logo" 
-                        href="#"
-                        @click.prevent="getAllContacts"
-                        >Список контактов</a></h1>
-                </div>
-            
-                <div class="collapse navbar-collapse ml-auto col-lg-4 d-flex justify-content-center">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск контактов" 
-                        aria-label="Search" v-model="userQuery">
-                        <button class="btn my-2 my-sm-0" 
-                            :class="[isValidQuery ? 'btn-outline-success' : 'btn-outline-secondary']"
-                            type="submit"
-                            @click.prevent="sendQuery"
-                        >Искать</button>
-                    </form>
-                </div>
-            </nav>
+        <header class="bg-light">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="col-lg-3 col-xl-3 col-md-4">
+                        <h1><a class="navbar-brand logo" 
+                            href="#"
+                            @click.prevent="getAllContacts"
+                            >Список контактов</a>
+                        </h1>
+                    </div>
+                
+                    <div class="collapse navbar-collapse ml-auto col-lg-5 col-xl-4 col-md-5
+                        d-flex justify-content-center">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск контактов" 
+                            aria-label="Search" v-model="userQuery">
+                            <button class="btn my-2 my-sm-0" 
+                                :class="[isValidQuery ? 'btn-outline-success' : 'btn-outline-secondary']"
+                                type="submit"
+                                @click.prevent="sendQuery"
+                            >Искать</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
         </header>
     </div>
 
@@ -43,11 +47,11 @@
                 <div class="contacts-table">
                     <div class="contacts-table__header">
                         <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-3">Полное имя</div>
-                            <div class="col-lg-3">Должность</div>
-                            <div class="col-lg-3">Телефон</div>
-                            <div class="col-lg-2">Email</div>
+                            <div class="col-lg-1 col-xl-1 col-md-1"></div>
+                            <div class="col-lg-3 col-xl-3 col-md-3">Полное имя</div>
+                            <div class="col-lg-3 col-xl-3 col-md-3">Должность</div>
+                            <div class="col-lg-3 col-xl-3 col-md-3">Телефон</div>
+                            <div class="col-lg-2 col-xl-2 col-md-2">Email</div>
                         </div>
                     </div>
                     

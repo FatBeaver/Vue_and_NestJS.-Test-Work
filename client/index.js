@@ -6,7 +6,7 @@ let header = new Vue({
     },
     computed: {
         isValidQuery() {
-            return (this.userQuery.length > 3) ? true : false
+            return (this.userQuery.length > 3)
         },
     },
     methods: {
@@ -52,12 +52,10 @@ let table = new Vue({
     },
     computed: {
         issetContacts() {
-            return (this.contacts.length > 0) ? true : false
+            return (this.contacts.length > 0)
         }
     },
-    methods: {
-
-    },
+    methods: {},
     mounted() {
         this.loading = true
         axios.get(`http://localhost:3000/api/contacts`)

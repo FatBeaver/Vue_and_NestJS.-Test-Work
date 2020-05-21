@@ -12,7 +12,7 @@ let header = new Vue({
     methods: {
         getAllContacts() {
             table.loading = true
-            axios.get(`http://localhost:3000/api/contacts`)
+            axios.get(`http://localhost:3000/contact`)
             .then(response => {
                 console.log(response)
                 if (response.data.issetContacts === false) {
@@ -28,9 +28,8 @@ let header = new Vue({
                 return false
             }
             table.loading = true
-            axios.get(`http://localhost:3000/api/contacts/${this.userQuery}`)
+            axios.get(`http://localhost:3000/contact/${this.userQuery}`)
             .then(response => {
-                console.log(response)
                 if (response.data.issetContacts === false) {
                     table.loading = false
                     return table.contacts = []
@@ -58,7 +57,7 @@ let table = new Vue({
     methods: {},
     mounted() {
         this.loading = true
-        axios.get(`http://localhost:3000/api/contacts`)
+        axios.get(`http://localhost:3000/contact`)
         .then(response => {
             console.log(response)
             if (response.data.issetContacts === false) {
@@ -108,7 +107,7 @@ Vue.component('contact', {
         </div>
         <div v-show="!hiddenAddedData">
             <lead
-                v-for="lead in contact.contactLeads"
+                v-for="lead in contact.leadsList"
                 :key="lead.id"
                 :lead="lead"
             ></lead>
@@ -135,7 +134,10 @@ Vue.component('lead', {
             <div class="col-lg-1 col-xl-1 col-md-1"></div>
             <div class="col-lg-1 col-xl-1 col-md-1 lead-info-item lead-name"><span>{{lead.name}}</span></div>
             <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item" style="margin-right:7px;"><span>Воронка:</span>
-                {{lead.pipelines.name}}
+                {{lead.pipelineData.name}}
+            </div>
+            <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item" style="margin-right:7px;"><span>Статус:</span>
+                {{lead.pipelineData.status.name}}
             </div>
             <div class="col-lg-2 col-xl-2 col-md-2 lead-info-item"><span>Компания:</span> {{(Object.keys(lead.company).length > 0) 
             ? lead.company.name : 'Отсутствует'}}</div>

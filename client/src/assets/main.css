@@ -105,7 +105,7 @@ section .contacts-table__body .leads-contact-info {
 }
 
 section .contacts-table__body .leads-contact-info .lead-info-item {
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     padding: 5px;
     text-overflow: ellipsis;
@@ -128,3 +128,22 @@ section .contacts-table__body .leads-contact-info .lead-name {
     justify-content: start;
 }
 
+/* ======== AUTH_VIEWS ======== */
+.auth-section {
+    height: 100vh;
+    padding-top: 70px;
+    background-color: rgba(236, 236, 236, 0.48);
+}
+
+.auth-section form {
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0px 1px 5px 4px rgb(180, 180, 180);
+    background-color: rgba(239, 239, 239, 0.73);
+    border-radius: 5px;
+    padding: 25px 40px;
+}
+
+.auth-section form h2 {
+    margin-bottom: 20px;
+}

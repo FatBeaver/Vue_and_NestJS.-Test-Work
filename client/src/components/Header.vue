@@ -11,8 +11,8 @@
                         </h1>
                     </div>
                     
-                    <div class="collapse navbar-collapse ml-auto col-lg-5 col-xl-4 col-md-5
-                        d-flex justify-content-center">
+                    <div class="collapse navbar-collapse ml-auto col-lg-4 col-xl-4 col-md-5
+                        d-flex justify-content-end">
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Поиск контактов"
                                    aria-label="Search" v-model="userQuery">
@@ -22,6 +22,17 @@
                                     @click.prevent="sendQuery"
                             >Искать</button>
                         </form>
+                    </div>
+                    
+                    <div
+                        class="col-lg-1 col-xl-1 d-flex justify-content-end"
+                    >
+                        <button type="button"
+                            class="btn btn-outline-primary"
+                            @click="logout"
+                        >
+                            Выйти
+                        </button>
                     </div>
                 </nav>
             </div>
@@ -45,6 +56,11 @@ export default {
         getAllContacts() {
             this.$store.loading = true
             this.$store.dispatch('fetchContacts')
+        },
+        logout() {
+            sessionStorage.removeItem('JWTtokenAmoTestApp')
+            localStorage.removeItem('JWTtokenAmoTestApp')
+            this.$router.push('/login')
         },
         sendQuery() {
             if (!this.isValidQuery) {

@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common'
+import {Inject, Injectable} from '@nestjs/common'
 import request = require('request')
-
+import {Repository} from "typeorm";
+import {User} from "../user/user.entity";
 
 @Injectable()
 export class AmoApiWorker {
@@ -8,6 +9,8 @@ export class AmoApiWorker {
     private USER_LOGIN: string = 'childrenofbodom737@gmail.com'
     private SUBDOMAIN: string = 'megarzord2000'
     private BASE_URL: string = 'https://'+this.SUBDOMAIN+'.amocrm.ru/api/v2/'
+
+    constructor() {}
 
     public async getContacts(query: string = ''): Promise<any> {
         const queryStr: string = (query != '') ? `query=${encodeURI(query)}&` : ''

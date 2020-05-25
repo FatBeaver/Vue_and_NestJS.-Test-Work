@@ -51,10 +51,15 @@ export default {
         },
         isLoading() {
             return this.$store.getters.loading
+        },
+        token() {
+            return this.$store.getters.token
         }
     },
-    methods: {},
     mounted() {
+        if (typeof this.token === 'undefined') {
+            return true
+        }
         this.$store.dispatch('fetchContacts')
     },
     components: {

@@ -1,11 +1,12 @@
-import {Controller, Get, Param, Header, Res, Req} from '@nestjs/common';
+import {Controller, Get, Param, Header, Res, Req, UseGuards} from '@nestjs/common';
 import { AmoApiWorker } from './contact.service'
-import { AuthService } from "../auth/auth.service";
 import { Response, Request } from 'express'
+import { AuthGuard } from './../guards/auth.guard'
 
+@UseGuards(AuthGuard)
 @Controller('contact')
 export class ContactController {
-    constructor(private amo: AmoApiWorker, private auth: AuthService) {}
+    constructor(private amo: AmoApiWorker) {}
 
     @Get('/:query?')
     @Header('Content-Type', 'application/json')

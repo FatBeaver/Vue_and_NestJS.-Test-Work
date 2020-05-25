@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         contacts: [],
-        loading: false
+        loading: false,
+        token: undefined
     },
     mutations: {
         updateContacts(state, contacts) {
@@ -18,12 +19,23 @@ export default new Vuex.Store({
         },
         isNotLoading(state) {
             state.loading = false
+        },
+        setToken(state, token) {
+            state.token = token
         }
     },
     actions: {
+        addToken(context, token) {
+            context.commit('setToken', token)
+        },
         fetchContacts(context, query = '') {
             context.commit('isLoading')
-            axios.get(`http://localhost:3000/contact/${query}`)
+            axios.get(`http://localhost:3000/contact/${query}`,
+            {
+                headers: {
+                    Authorization: context.getters.token
+                }
+            })
             .then(response => {
                 if (response.data.issetContacts === false) {
                     context.commit('isNotLoading')
@@ -40,6 +52,9 @@ export default new Vuex.Store({
         },
         loading(state) {
             return state.loading
+        },
+        token(state) {
+            return state.token
         }
     },
     modules: {
